@@ -1,6 +1,8 @@
 #pragma once
 
 // RGB LED strip (requires Elite C with pin B7)
+#define WS2812_DI_PIN B7
+#define RGBLIGHT_LED_COUNT 6
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8

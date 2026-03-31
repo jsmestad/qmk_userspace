@@ -7,7 +7,7 @@
 #define _LOWER 1
 #define _RAISE 2
 #define _GAMING 3
-#define _ADJUST 16
+#define _ADJUST 4
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
@@ -161,38 +161,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-// Leader Key sequences (new API, replaces LEADER_DICTIONARY)
-static bool leader_succeeded;
-
+// Leader Key sequences
 void leader_start_user(void) {
-    leader_succeeded = false;
     rgblight_sethsv_noeeprom(HSV_GOLD);
 }
 
-bool leader_sequence_two_keys(uint16_t kc1, uint16_t kc2) {
-    if (kc1 == KC_I && kc2 == KC_E) {
+void leader_end_user(void) {
+    bool succeeded = false;
+
+    if (leader_sequence_two_keys(KC_I, KC_E)) {
         // macOS Emoji Selector
         SEND_STRING(SS_LCTL(SS_LGUI(SS_TAP(X_SPACE))));
-        leader_succeeded = true;
-        return true;
-    }
-    if (kc1 == KC_F && kc2 == KC_F) {
+        succeeded = true;
+    } else if (leader_sequence_two_keys(KC_F, KC_F)) {
         // macOS Spotlight
         SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
-        leader_succeeded = true;
-        return true;
-    }
-    if (kc1 == KC_F && kc2 == KC_D) {
+        succeeded = true;
+    } else if (leader_sequence_two_keys(KC_F, KC_D)) {
         // fd triggers Escape (matching Emacs)
         SEND_STRING(SS_TAP(X_ESCAPE));
-        leader_succeeded = true;
-        return true;
+        succeeded = true;
     }
-    return false;
-}
 
-void leader_end_user(void) {
-    if (leader_succeeded) {
+    if (succeeded) {
         rgblight_sethsv_noeeprom(HSV_GREEN);
         wait_ms(300);
     } else {
