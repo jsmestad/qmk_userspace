@@ -1,0 +1,3 @@
+RGBLIGHT_ENABLE = yes
+BOOTLOADER = atmel-dfu
+LEADER_ENABLE = yes

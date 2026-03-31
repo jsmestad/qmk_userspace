@@ -1,0 +1,17 @@
+#pragma once
+
+// Select hand configuration
+#define MASTER_LEFT
+
+#define TAPPING_TERM 150
+
+// RGB underglow
+#undef RGBLED_NUM
+#define RGBLED_NUM 16
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#define RGBLIGHT_HUE_STEP 8
+#define RGBLIGHT_SAT_STEP 8
+#define RGBLIGHT_VAL_STEP 8
+#define RGBLIGHT_SLEEP
