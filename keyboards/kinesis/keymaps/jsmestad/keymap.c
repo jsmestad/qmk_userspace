@@ -3,6 +3,11 @@
 
 #include QMK_KEYBOARD_H
 
+#define IDLE_TIMEOUT_MS 600000 // 10 minutes
+
+static uint32_t idle_timer = 0;
+static bool rgb_idle = false;
+
 #define _QWERTY 0
 #define _LOWER 1
 
@@ -74,6 +79,33 @@ void keyboard_post_init_user(void) {
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT);
 }
 
+void suspend_power_down_user(void) {
+    rgblight_disable_noeeprom();
+}
+
+void suspend_wakeup_init_user(void) {
+    rgb_idle = false;
+    rgblight_enable_noeeprom();
+    rgblight_sethsv_noeeprom(HSV_TEAL);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT);
+}
+
+void housekeeping_task_user(void) {
+    if (!rgb_idle && timer_elapsed32(idle_timer) > IDLE_TIMEOUT_MS) {
+        rgb_idle = true;
+        rgblight_disable_noeeprom();
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        idle_timer = timer_read32();
+        if (rgb_idle) {
+            rgb_idle = false;
+            rgblight_enable_noeeprom();
+            rgblight_sethsv_noeeprom(HSV_TEAL);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT);
+        }
+    }
     return true;
 }
