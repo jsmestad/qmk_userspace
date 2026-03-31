@@ -8,7 +8,6 @@ My QMK keymaps, stored externally from the main [qmk_firmware](https://github.co
 |---|---|---|
 | Atreus62 | `atreus62:jsmestad` | Elite C controller, RGB underglow, Leader Key sequences |
 | Ergodox EZ | `ergodox_ez:jsmestad` | Layer indicator LEDs, Space Cadet Shift |
-| Keebio Iris | `keebio/iris/rev2:jsmestad` | Split, RGB underglow. **Change `rev2` to match your revision.** |
 | Kinesis Advantage | `kinesis/alvicstep:jsmestad` | RGB strip, Space Cadet Shift. **Change `alvicstep` to match your controller (kint2pp, kint36, etc).** |
 
 ## Building locally
@@ -45,11 +44,6 @@ This repo replaces the old `jsmestad/qmk_firmware` fork. Key changes made during
 
 **Atreus62:**
 - Leader Key API migrated from `LEADER_DICTIONARY()` / `matrix_scan_user` to the new `leader_sequence_two_keys()` / `leader_start_user()` / `leader_end_user()` callbacks
-
-**Iris:**
-- Keyboard path moved from `keyboards/iris/` to `keyboards/keebio/iris/`
-- Removed `#include "config_common.h"` and `#ifndef CONFIG_USER_H` guards
-- `RGBLIGHT_ANIMATIONS` replaced with individual `RGBLIGHT_EFFECT_*` defines
 
 **Kinesis:**
 - `LAYOUT_pretty` renamed to `LAYOUT`
