@@ -5,8 +5,12 @@
 // is pressed before releasing, even before TAPPING_TERM.
 #define PERMISSIVE_HOLD
 
+// Flow Tap: disable hold behavior during fast typing.
+// Prevents accidental Ctrl from ESCC (Ctrl/Esc) during normal typing.
+#define FLOW_TAP_TERM 150
+
 #undef DEBOUNCE
-#define DEBOUNCE 1
+#define DEBOUNCE 5
 
 // RGB LED strip
 #define WS2812_DI_PIN F5
