@@ -8,7 +8,7 @@ My QMK keymaps, stored externally from the main [qmk_firmware](https://github.co
 |---|---|---|
 | Atreus62 | `atreus62:jsmestad` | Elite C controller, RGB underglow, Leader Key sequences |
 | Ergodox EZ | `ergodox_ez:jsmestad` | Layer indicator LEDs, Space Cadet Shift |
-| Kinesis Advantage | `kinesis/alvicstep:jsmestad` | RGB strip, Space Cadet Shift. **Change `alvicstep` to match your controller (kint2pp, kint36, etc).** |
+| Kinesis Advantage | `kinesis/stapelberg:jsmestad` | Stapelberg controller (Teensy++ 2.0), RGB strip, Space Cadet Shift |
 
 ## Building locally
 
@@ -28,7 +28,7 @@ qmk userspace-compile
 ## Flashing firmware
 
 ```sh
-qmk flash -kb kinesis/alvicstep -km jsmestad
+qmk flash -kb kinesis/stapelberg -km jsmestad
 ```
 
 QMK will compile and then wait for the keyboard to enter bootloader mode.

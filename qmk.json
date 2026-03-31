@@ -3,6 +3,6 @@
     "build_targets": [
         ["atreus62", "jsmestad"],
         ["ergodox_ez", "jsmestad"],
-        ["kinesis/alvicstep", "jsmestad"]
+        ["kinesis/stapelberg", "jsmestad"]
     ]
 }
