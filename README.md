@@ -25,6 +25,20 @@ qmk compile -kb atreus62 -km jsmestad
 qmk userspace-compile
 ```
 
+## Flashing firmware
+
+```sh
+qmk flash -kb kinesis/alvicstep -km jsmestad
+```
+
+QMK will compile and then wait for the keyboard to enter bootloader mode.
+
+**Kinesis**: Hold **Del** (left thumb) + press the **top-right key** to trigger `QK_BOOT`. This enters the Teensy/halfkay bootloader via software, no physical reset button needed.
+
+**Atreus62**: Hold **Lower + Raise** to activate the ADJUST layer, then press the **bottom-right key** for `QK_BOOT`.
+
+**Ergodox EZ**: Use the physical reset button on the board (no `QK_BOOT` key is mapped, add one if you want it).
+
 ## Building with GitHub Actions
 
 Push to the repo and GitHub Actions will compile all build targets automatically. Download firmware from the Releases tab.
